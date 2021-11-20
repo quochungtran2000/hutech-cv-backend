@@ -1,4 +1,5 @@
 import { ConnectionOptions } from "typeorm";
+import { City, District } from "../model/entity";
 import {
   DB_PG_HOST,
   DB_PG_NAME,
@@ -14,7 +15,7 @@ const dbConfig: ConnectionOptions = {
   username: DB_PG_USERNAME,
   password: DB_PG_PASSWORD,
   database: DB_PG_NAME,
-  entities: [],
+  entities: [City, District],
 };
 
 export default dbConfig;
