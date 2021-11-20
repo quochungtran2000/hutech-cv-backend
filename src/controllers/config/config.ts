@@ -18,7 +18,7 @@ export const config = async (
       .where("name = :type")
       .setParameters({ type })
       .getMany();
-    return res.status(400).json(data);
+    return res.status(200).json(data);
   } catch (error) {
     return res.status(400).json();
   }

@@ -104,7 +104,7 @@ create sequence configuration_id_seq;
 create table public.configuration (
   id integer default nextval('configuration_id_seq'::regClass) not null,
   name character varying not null,
-  level integer not null,
+  level integer,
   value_vi character varying,
   value_en character varying
 );
@@ -134,3 +134,13 @@ create table cv (
 alter table cv add column create_date timestamp default now();
 alter table cv add column update_date timestamp default now();
 alter table cv add constraint cv_pkey primary key (id);
+
+
+create table public.translation (
+	key character varying not null,
+	value_vn character varying not null,
+    value_en character varying not null
+);
+
+alter table public.translation add constraint translation_pkey primary key (key);
+
