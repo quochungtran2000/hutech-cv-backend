@@ -11,7 +11,6 @@ export interface CvDto {
   address: string;
   summary: string;
   template_id: number;
-  author_id: string;
   activities: ActivityDto[];
   experiences: ExperienceDto[];
   educations: EducationDto[];
@@ -62,4 +61,11 @@ export interface CertificateDto {
   organization: string;
   year: string;
   url: string;
+}
+
+export interface LoginDto {
+  id: string;
+  avatar: string;
+  email: string;
+  name: string;
 }

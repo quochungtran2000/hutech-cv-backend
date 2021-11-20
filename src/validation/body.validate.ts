@@ -63,11 +63,17 @@ export const cvValidation = Joi.object({
   address: Joi.string().required(),
   summary: Joi.string().required(),
   template_id: Joi.number().required(),
-  author_id: Joi.string().required(),
   activities: Joi.array().items(cvActivity),
   certificates: Joi.array().items(cvCertificate),
   languages: Joi.array().items(cvLanguage),
   skills: Joi.array().items(cvSkill),
   educations: Joi.array().items(cvEducation),
   experiences: Joi.array().items(cvExperience),
+});
+
+export const loginValidation = Joi.object({
+  id: Joi.string().required(),
+  avatar: Joi.string(),
+  email: Joi.string().email(),
+  name: Joi.string(),
 });

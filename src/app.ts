@@ -1,4 +1,4 @@
-import 'reflect-metadata'
+import "reflect-metadata";
 import Express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -8,12 +8,14 @@ import { createConnection } from "typeorm";
 import { globalPrefix, PORT } from "./helpers/constants";
 
 // import auth from "./middleware/auth.middleware";
-import morgan from 'morgan'
+import morgan from "morgan";
+import { auth } from "./middlewares/auth.middleware";
 
 const app = Express();
 
+app.use(auth);
 app.use(cors());
-app.use(morgan('tiny'))
+app.use(morgan("tiny"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

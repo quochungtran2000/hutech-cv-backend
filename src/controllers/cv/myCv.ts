@@ -2,8 +2,11 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { Cv } from "../../model/entity";
 
-export const getCv = async (req: Request, res: Response) => {
+export const myCv = async (req: Request, res: Response) => {
   try {
+    const userId = (req as any)?.user?.userId;
+    if (!userId) return res.status(401).json({ message: "Unauthorized!" });
+
     const data = await getRepository(Cv)
       .createQueryBuilder("cv")
       .leftJoinAndSelect("cv.experiences", "ex")
@@ -16,7 +19,9 @@ export const getCv = async (req: Request, res: Response) => {
       .leftJoinAndSelect("cv.district", "di")
       .leftJoinAndSelect("cv.current_job", "cj")
       .leftJoinAndSelect("cv.author", "au")
-      .getMany();
+      .where("cv.author_id = :userId")
+      .setParameters({ userId })
+      .getOne();
     return res.status(200).json(data);
   } catch (error: any) {
     console.log(error);
