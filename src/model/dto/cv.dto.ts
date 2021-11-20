@@ -13,7 +13,7 @@ export interface CvDto {
   template_id: number;
   configuration_id: number;
   author_id: string;
-  avtivities: ActivityDto[];
+  activities: ActivityDto[];
   experiences: ExperienceDto[];
   educations: EducationDto[];
   skills: SkillDto[];
