@@ -30,7 +30,7 @@ export class Cv {
   job_title!: string;
 
   @Column({ nullable: false })
-  current_level!: string;
+  current_level!: number;
 
   @Column({ nullable: false })
   experience_years!: number;
@@ -53,14 +53,11 @@ export class Cv {
   @Column({ nullable: false })
   address!: string;
 
-  @Column({ nullable: false })
-  description!: string;
+  @Column({name:'description', nullable: false })
+  summary!: string;
 
   @Column({ nullable: false })
   template_id!: number;
-
-  @Column({ nullable: false })
-  configuration_id!: number;
 
   @OneToMany(() => Experience, (workExperience) => workExperience.cv)
   @JoinColumn({ name: "id", referencedColumnName: "cv_id" })
@@ -94,7 +91,7 @@ export class Cv {
   @JoinColumn({ name: "district_id", referencedColumnName: "id" })
   district!: City;
 
-  @OneToMany(() => Configuration, (config) => config.cv)
-  @JoinColumn({ name: "configuration_id", referencedColumnName: "id" })
-  configurations!: Configuration[];
+  @OneToOne(() => Configuration, (config) => config.cv)
+  @JoinColumn({ name: "current_level", referencedColumnName: "id" })
+  current_job!: Configuration;
 }

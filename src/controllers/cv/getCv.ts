@@ -14,7 +14,7 @@ export const getCv = async (req: Request, res: Response) => {
       .leftJoinAndSelect("cv.languages", "la")
       .leftJoinAndSelect("cv.city", "ct")
       .leftJoinAndSelect("cv.district", "di")
-      .leftJoinAndSelect("cv.configurations", "co")
+      .leftJoinAndSelect("cv.current_job", "cj")
       .getMany();
     return res.status(200).json(data);
   } catch (error: any) {

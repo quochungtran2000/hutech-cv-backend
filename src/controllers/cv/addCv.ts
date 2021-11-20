@@ -38,9 +38,8 @@ export const addCv = async (
         city_id: data.city_id,
         district_id: data.district_id,
         address: data.address,
-        description: data.description,
+        summary: data.summary,
         template_id: data.template_id,
-        configuration_id: data.configuration_id,
       })
       .returning("*")
       .execute();

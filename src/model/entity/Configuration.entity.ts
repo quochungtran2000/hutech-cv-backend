@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Cv } from ".";
 
 @Entity()
@@ -26,8 +33,8 @@ export class Configuration extends BaseEntity {
   // @JoinColumn({ name: "id", referencedColumnName: "configuration_id" })
   // skill!: Skill[];
 
-  @ManyToOne(() => Cv, (cv) => cv.configurations)
-  @JoinColumn({ name: "id", referencedColumnName: "configuration_id" })
+  @OneToOne(() => Cv, (cv) => cv.current_job)
+  @JoinColumn({ name: "id", referencedColumnName: "current_level" })
   cv!: Cv;
 
   // @OneToMany(() => Language, (language) => language.configuration)

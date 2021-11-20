@@ -1,5 +1,4 @@
-import Joi, { ObjectSchema } from "joi";
-import { CvDto } from "../model/dto/cv.dto";
+import Joi from "joi";
 
 export const addTranslationValidation = Joi.object({
   key: Joi.string().required(),
@@ -51,10 +50,10 @@ export const cvActivity = Joi.object({
   description: Joi.string(),
 });
 
-export const cvValidation= Joi.object({
+export const cvValidation = Joi.object({
   fullname: Joi.string().required(),
   job_title: Joi.string().required(),
-  current_level: Joi.string().required(),
+  current_level: Joi.number(),
   experience_years: Joi.number().required(),
   email: Joi.string().email().required(),
   phone: Joi.string().length(10).required(),
@@ -62,9 +61,8 @@ export const cvValidation= Joi.object({
   city_id: Joi.number().required(),
   district_id: Joi.number().required(),
   address: Joi.string().required(),
-  description: Joi.string().required(),
+  summary: Joi.string().required(),
   template_id: Joi.number().required(),
-  configuration_id: Joi.number().required(),
   author_id: Joi.string().required(),
   activities: Joi.array().items(cvActivity),
   certificates: Joi.array().items(cvCertificate),
