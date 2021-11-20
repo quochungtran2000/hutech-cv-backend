@@ -3,7 +3,15 @@ import { createQueryBuilder, getRepository } from "typeorm";
 import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
 import { beforeUpdateCv, getConfig } from "../../helpers/helpers";
 import { CvDto } from "../../model/dto/cv.dto";
-import { Activity, Certificate, Cv, Education, Experience, Language, Skill } from "../../model/entity";
+import {
+  Activity,
+  Certificate,
+  Cv,
+  Education,
+  Experience,
+  Language,
+  Skill,
+} from "../../model/entity";
 import { cvValidation } from "../../validation";
 
 export const updateCv = async (
@@ -25,7 +33,36 @@ export const updateCv = async (
       .setParameters({ userId })
       .getOne();
 
-    if (!cv) return res.status(400).json({ status: 400, message: "not found" });
+    let ref_id: number;
+
+    if (!cv) {
+      const result = await createQueryBuilder()
+        .insert()
+        .into(Cv)
+        .values({
+          fullname: data.fullname,
+          job_title: data.job_title,
+          current_level: data.current_level,
+          experience_years: data.experience_years,
+          email: data.email,
+          phone: data.phone,
+          date_of_birth: data.date_of_birth,
+          city_id: data.city_id,
+          district_id: data.district_id,
+          address: data.address,
+          summary: data.summary,
+          template_id: data.template_id,
+          author_id: userId,
+        })
+        .returning("*")
+        .execute();
+
+      const [insertCv] = result.raw;
+      ref_id = insertCv.id;
+    } else {
+      ref_id = cv.id;
+      await beforeUpdateCv(ref_id);
+    }
 
     await getRepository(Cv)
       .createQueryBuilder()
@@ -46,10 +83,8 @@ export const updateCv = async (
         author_id: userId,
       })
       .where("id = :cvId")
-      .setParameters({ cvId: cv.id })
+      .setParameters({ cvId: ref_id })
       .execute();
-
-    await beforeUpdateCv(cv.id);
 
     const {
       experiences = [],
@@ -65,7 +100,7 @@ export const updateCv = async (
       const values: QueryDeepPartialEntity<Experience>[] = [];
       for (const elm of experiences) {
         values.push({
-          cv_id: cv.id,
+          cv_id: ref_id,
           job_title: elm.job_title,
           company: elm.company,
           from_date: elm.from_date,
@@ -84,7 +119,7 @@ export const updateCv = async (
       for (const elm of languages) {
         const config = await getConfig(elm.configuration_id);
         values.push({
-          cv_id: cv.id,
+          cv_id: ref_id,
           name: elm.name,
           level_vi: config.value_vi,
           level_en: config.value_en,
@@ -100,7 +135,7 @@ export const updateCv = async (
       for (const elm of educations) {
         const config = await getConfig(elm.configuration_id);
         values.push({
-          cv_id: cv.id,
+          cv_id: ref_id,
           major: elm.major,
           school: elm.school,
           degree_en: config.value_en,
@@ -119,7 +154,7 @@ export const updateCv = async (
       const values: QueryDeepPartialEntity<Skill>[] = [];
       for (const elm of skills) {
         values.push({
-          cv_id: cv.id,
+          cv_id: ref_id,
           name: elm.name,
           level: elm.level,
         });
@@ -133,7 +168,7 @@ export const updateCv = async (
       const values: QueryDeepPartialEntity<Certificate>[] = [];
       for (const elm of certificates) {
         values.push({
-          cv_id: cv.id,
+          cv_id: ref_id,
           name: elm.name,
           organization: elm.organization,
           year: elm.year,
@@ -149,7 +184,7 @@ export const updateCv = async (
       const values: QueryDeepPartialEntity<Activity>[] = [];
       for (const elm of activities) {
         values.push({
-          cv_id: cv.id,
+          cv_id: ref_id,
           name: elm.name,
           organization: elm.organization,
           role: elm.role,
@@ -165,7 +200,9 @@ export const updateCv = async (
 
     await Promise.all(todoList);
 
-    return res.status(200).json(data);
+    return res
+      .status(200)
+      .json({ status: 200, message: cv ? "update success" : "create success" });
   } catch (error: any) {
     console.log(error);
     return res.status(400).json({ status: 400, message: error.message });
