@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import {
+  Account,
   Activity,
   Certificate,
   City,
@@ -53,11 +54,14 @@ export class Cv {
   @Column({ nullable: false })
   address!: string;
 
-  @Column({name:'description', nullable: false })
+  @Column({ name: "description", nullable: false })
   summary!: string;
 
   @Column({ nullable: false })
   template_id!: number;
+
+  @Column({ nullable: false })
+  author_id!: string;
 
   @OneToMany(() => Experience, (workExperience) => workExperience.cv)
   @JoinColumn({ name: "id", referencedColumnName: "cv_id" })
@@ -94,4 +98,8 @@ export class Cv {
   @OneToOne(() => Configuration, (config) => config.cv)
   @JoinColumn({ name: "current_level", referencedColumnName: "id" })
   current_job!: Configuration;
+
+  @OneToOne(() => Account, account=> account.cv)
+  @JoinColumn({ name: "author_id", referencedColumnName: "id" })
+  author!: Account
 }

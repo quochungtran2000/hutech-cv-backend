@@ -110,6 +110,8 @@ alter table public.configuration add constraint configuration_pkey primary key (
 
 create sequence cv_id_seq;
 
+select * from configuration_id_seq;
+
 create table cv (
   id integer default nextval('cv_id_seq'::regClass) not null,
   fullname character varying not null,
@@ -123,12 +125,17 @@ create table cv (
   district_id  integer not null,
   address character varying not null,
   description character varying,
-  template_id  integer not null
+  template_id  integer not null,
+	author_id character varying not null
 );
 
 alter table cv add column create_date timestamp default now();
 alter table cv add column update_date timestamp default now();
 alter table cv add constraint cv_pkey primary key (id);
+
+select * from city
+select * from district
+select * from configuration
 
 
 create table public.translation (
@@ -145,6 +152,7 @@ alter table public.translation add constraint translation_pkey primary key (key)
 alter table cv add constraint cv_fkey_city foreign key (city_id) references city (id);
 alter table cv add constraint cv_fkey_district foreign key (district_id) references district (id);
 alter table cv add constraint cv_fkey_configuration foreign key (current_level) references public.configuration (id);
+alter table cv add constraint cv_fkey_account foreign key (author_id) references account (id);
 
 
 alter table exprerience  add constraint experience_fkey_cv foreign key (cv_id) references cv (id);
@@ -153,3 +161,15 @@ alter table certificate add constraint certificate_fkey_cv foreign key (cv_id) r
 alter table activity add constraint activity_fkey_cv foreign key (cv_id) references cv (id);
 alter table skill add constraint skill_fkey_cv foreign key (cv_id) references cv (id);
 alter table public.language add constraint language_fkey_cv foreign key (cv_id) references cv (id);
+
+
+
+create table account (
+	id character varying not null,
+	avatar character varying,
+	email character varying,
+	name character varying
+);
+
+alter table account add constraint account_pkey primary key (id);
+

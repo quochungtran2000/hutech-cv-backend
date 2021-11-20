@@ -1,5 +1,6 @@
 import { ConnectionOptions } from "typeorm";
 import {
+  Account,
   Activity,
   Certificate,
   City,
@@ -39,6 +40,7 @@ const dbConfig: ConnectionOptions = {
     Configuration,
     Cv,
     Translation,
+    Account,
   ],
 };
 
