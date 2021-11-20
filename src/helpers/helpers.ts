@@ -13,6 +13,7 @@ import {
 import jwt from "jsonwebtoken";
 import { template } from "./template";
 import sgMail from "@sendgrid/mail";
+import { SEND_KEY } from "./constants";
 
 dotEnv.config();
 
@@ -97,14 +98,12 @@ export const beforeUpdateCv = (id: number): Promise<any> => {
   ]);
 };
 
-sgMail.setApiKey(
-  "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"
-);
+sgMail.setApiKey(process.env.SEND_KEY || '');
 
 export const sendMail = (to: string, file: any) => {
   const msg = {
     to: to,
-    from: "tranquochung6810@gmail.com",
+    from: "axiosdungchung@gmail.com",
     subject: "Hutech cv gửi bạn cv",
     text: "Cảm ơn bạn đã sử dụng dịch vụ của Hutech Cv",
     html: template,
