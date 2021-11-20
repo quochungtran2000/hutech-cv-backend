@@ -20,7 +20,6 @@ export const addCv = async (
 ) => {
   try {
     const data = req.body;
-    console.log(data);
 
     const { error } = cvValidation.validate(data);
     if (error) return res.status(400).json({ message: error.message });
@@ -49,12 +48,12 @@ export const addCv = async (
     const [insertCv] = result.raw;
 
     const {
-      experiences,
-      languages,
-      educations,
-      skills,
-      certificates,
-      avtivities,
+      experiences = [],
+      languages = [],
+      educations = [],
+      skills = [],
+      certificates = [],
+      activities = [],
     } = data;
     const todoList: Promise<any>[] = [];
 
@@ -142,9 +141,9 @@ export const addCv = async (
       );
     }
 
-    if (avtivities) {
+    if (activities) {
       const values: QueryDeepPartialEntity<Activity>[] = [];
-      for (const elm of avtivities) {
+      for (const elm of activities) {
         values.push({
           cv_id: insertCv.id,
           name: elm.name,
