@@ -19,6 +19,7 @@
     "helmet": "^4.6.0",
     "morgan": "^1.10.0",
     "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.41"
   },
   "devDependencies": {

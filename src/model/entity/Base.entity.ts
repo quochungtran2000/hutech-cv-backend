@@ -1,4 +1,4 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity } from "typeorm";
+import { Column, Entity } from "typeorm";
 
 @Entity()
 export class BaseDateTime {

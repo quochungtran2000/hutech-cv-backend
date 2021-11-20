@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Cv } from ".";
 
 @Entity({ schema: "public", name: "exprerience" })
 export class Experience {
@@ -26,7 +33,7 @@ export class Experience {
   @Column({ nullable: true })
   description!: string;
 
-  // @ManyToOne(() => CV, (cv: CV) => cv.experiences)
-  // @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
-  // cv: CV;
+  @ManyToOne(() => Cv, (cv) => cv.experiences)
+  @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
+  cv!: Cv;
 }
