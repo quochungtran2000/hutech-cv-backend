@@ -103,7 +103,7 @@ sgMail.setApiKey(process.env.SEND_KEY || '');
 export const sendMail = (to: string, file: any) => {
   const msg = {
     to: to,
-    from: "axiosdungchung0@gmail.com",
+    from: "axiosdungchung@gmail.com",
     subject: "Hutech cv gửi bạn cv",
     text: "Cảm ơn bạn đã sử dụng dịch vụ của Hutech Cv",
     html: template,
