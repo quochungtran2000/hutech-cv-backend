@@ -98,7 +98,7 @@ export const beforeUpdateCv = (id: number): Promise<any> => {
   ]);
 };
 
-sgMail.setApiKey(process.env.SEND_KEY || '');
+sgMail.setApiKey(process.env.SEND_KEY || "");
 
 export const sendMail = (to: string, file: any) => {
   const msg = {
@@ -117,14 +117,5 @@ export const sendMail = (to: string, file: any) => {
     ],
   };
 
-  sgMail.send(msg).then(
-    () => {},
-    (error) => {
-      console.error(error);
-
-      if (error.response) {
-        console.error(error.response.body);
-      }
-    }
-  );
+  return sgMail.send(msg);
 };

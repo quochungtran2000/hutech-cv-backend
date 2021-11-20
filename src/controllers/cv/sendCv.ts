@@ -9,6 +9,9 @@ export const sendCv = async (req: Request, res: Response) => {
     const file = req.file;
     const email = req?.body?.email;
 
+    console.log(`file`, file);
+    console.log(`email`, email);
+
     console.log(email);
 
     if (!file || !email) return res.sendStatus(400);
