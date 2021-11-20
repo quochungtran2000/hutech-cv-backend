@@ -60,6 +60,8 @@ export const cvValidation = Joi.object({
   date_of_birth: Joi.date().required(),
   city_id: Joi.number().required(),
   district_id: Joi.number().required(),
+  gender: Joi.string().required().valid('male', 'female'),
+  married: Joi.boolean().required(),
   address: Joi.string().required(),
   summary: Joi.string().required(),
   template_id: Joi.number().required(),

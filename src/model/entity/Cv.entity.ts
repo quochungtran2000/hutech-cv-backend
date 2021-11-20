@@ -42,6 +42,12 @@ export class Cv {
   @Column({ nullable: false })
   phone!: string;
 
+  @Column({ default: "male" })
+  gender!: string;
+
+  @Column({ name: "is_married", default: false })
+  married!: boolean;
+
   @Column({ nullable: true })
   date_of_birth!: Date;
 
@@ -99,7 +105,7 @@ export class Cv {
   @JoinColumn({ name: "current_level", referencedColumnName: "id" })
   current_job!: Configuration;
 
-  @OneToOne(() => Account, account=> account.cv)
+  @OneToOne(() => Account, (account) => account.cv)
   @JoinColumn({ name: "author_id", referencedColumnName: "id" })
-  author!: Account
+  author!: Account;
 }

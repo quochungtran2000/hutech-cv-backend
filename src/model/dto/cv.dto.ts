@@ -8,6 +8,8 @@ export interface CvDto {
   date_of_birth: Date;
   city_id: number;
   district_id: number;
+  gender: string;
+  married: boolean;
   address: string;
   summary: string;
   template_id: number;
