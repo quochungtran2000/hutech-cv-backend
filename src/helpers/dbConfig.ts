@@ -11,6 +11,7 @@ import {
   Language,
   Skill,
 } from "../model/entity";
+import { Translation } from "../model/entity/Translation.entity";
 import {
   DB_PG_HOST,
   DB_PG_NAME,
@@ -37,6 +38,7 @@ const dbConfig: ConnectionOptions = {
     Activity,
     Configuration,
     Cv,
+    Translation,
   ],
 };
 
