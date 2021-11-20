@@ -4,8 +4,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryColumn,
 } from "typeorm";
+import { Cv } from ".";
 import { City } from "./City.entity";
 
 @Entity({ name: "district" })
@@ -23,7 +25,7 @@ export class District extends BaseEntity {
   @JoinColumn({ name: "city_id", referencedColumnName: "id" })
   city!: City;
 
-  // @OneToOne(() => CV, (cv: CV) => cv.district)
-  // @JoinColumn({ name: "id", referencedColumnName: "district_id" })
-  // cv!: CV;
+  @OneToOne(() => Cv, (cv) => cv.district)
+  @JoinColumn({ name: "id", referencedColumnName: "district_id" })
+  cv!: Cv;
 }

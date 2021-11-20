@@ -1,8 +1,11 @@
 import { Request, Response } from "express";
+import { getRepository } from "typeorm";
+import { City } from "../../model/entity";
 
 export const cities = async (req: Request, res: Response) => {
   try {
-    return res.status(400).json([{id: 123, name: 'ASD'}]);
+    const data = await getRepository(City).createQueryBuilder().getMany();
+    return res.status(400).json(data);
   } catch (error) {
     return res.status(400).json();
   }

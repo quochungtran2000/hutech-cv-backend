@@ -1,7 +1,14 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Cv } from "./Cv.entity";
 
 @Entity({ name: "certificate" })
-export class Certificate extends BaseEntity {
+export class Certificate {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -20,7 +27,7 @@ export class Certificate extends BaseEntity {
   @Column({ nullable: false })
   url!: string;
 
-  // @ManyToOne(() => CV, (cv: CV) => cv.certificates)
-  // @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
-  // cv!: CV;
+  @ManyToOne(() => Cv, (cv) => cv.certificates)
+  @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
+  cv!: Cv;
 }

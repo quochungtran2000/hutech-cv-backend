@@ -5,6 +5,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { Cv } from ".";
 
 @Entity({ name: "activity" })
 export class Activity {
@@ -32,7 +33,7 @@ export class Activity {
   @Column({ nullable: true })
   description!: string;
 
-  // @ManyToOne(() => CV, (cv: CV) => cv.activities, { onDelete: "CASCADE" })
-  // @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
-  // cv: CV;
+  @ManyToOne(() => Cv, (cv) => cv.activities)
+  @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
+  cv!: Cv;
 }

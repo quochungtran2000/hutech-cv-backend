@@ -1,7 +1,7 @@
-import { Certificate } from "crypto";
 import { ConnectionOptions } from "typeorm";
 import {
   Activity,
+  Certificate,
   City,
   Configuration,
   Cv,

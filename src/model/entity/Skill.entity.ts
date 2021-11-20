@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Cv } from ".";
 
 @Entity({ name: "skill" })
 export class Skill {
@@ -16,4 +23,8 @@ export class Skill {
 
   @Column()
   configuration_id!: number;
+
+  @ManyToOne(() => Cv, (cv) => cv.skills)
+  @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
+  cv!: Cv;
 }

@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import Express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -5,6 +6,7 @@ import initialRouter from "./router";
 import dbConfig from "./helpers/dbConfig";
 import { createConnection } from "typeorm";
 import { globalPrefix, PORT } from "./helpers/constants";
+
 // import auth from "./middleware/auth.middleware";
 import morgan from 'morgan'
 

@@ -1,4 +1,12 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Cv } from ".";
 
 @Entity({ name: "education" })
 export class Education extends BaseEntity {
@@ -32,9 +40,9 @@ export class Education extends BaseEntity {
   @Column({ nullable: false })
   achievement!: string;
 
-  // @ManyToOne(() => CV, (cv: CV) => cv.educations)
-  // @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
-  // cv!: CV;
+  @ManyToOne(() => Cv, (cv) => cv.educations)
+  @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
+  cv!: Cv;
 
   // @ManyToOne(() => Configuration, (config) => config.education)
   // @JoinColumn({ name: "configuration_id", referencedColumnName: "id" })

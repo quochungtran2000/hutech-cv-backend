@@ -1,4 +1,12 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Cv } from ".";
 
 @Entity({ schema: "public", name: "language" })
 export class Language extends BaseEntity {
@@ -20,9 +28,9 @@ export class Language extends BaseEntity {
   @Column({ nullable: false })
   configuration_id!: number;
 
-  // @ManyToOne(() => CV, (cv: CV) => cv.languages)
-  // @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
-  // cv!: CV;
+  @ManyToOne(() => Cv, (cv) => cv.languages)
+  @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
+  cv!: Cv;
 
   // @ManyToOne(() =>Configuration, (configuration:Configuration ) => configuration.language)
   // @JoinColumn({ name: "configuration_id", referencedColumnName: "id"})
