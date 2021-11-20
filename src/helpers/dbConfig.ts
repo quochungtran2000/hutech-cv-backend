@@ -1,5 +1,16 @@
+import { Certificate } from "crypto";
 import { ConnectionOptions } from "typeorm";
-import { City, District } from "../model/entity";
+import {
+  Activity,
+  City,
+  Configuration,
+  Cv,
+  District,
+  Education,
+  Experience,
+  Language,
+  Skill,
+} from "../model/entity";
 import {
   DB_PG_HOST,
   DB_PG_NAME,
@@ -15,7 +26,18 @@ const dbConfig: ConnectionOptions = {
   username: DB_PG_USERNAME,
   password: DB_PG_PASSWORD,
   database: DB_PG_NAME,
-  entities: [City, District],
+  entities: [
+    City,
+    District,
+    Language,
+    Skill,
+    Certificate,
+    Education,
+    Experience,
+    Activity,
+    Configuration,
+    Cv,
+  ],
 };
 
 export default dbConfig;
