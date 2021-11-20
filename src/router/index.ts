@@ -5,6 +5,7 @@ import { cvController } from "../controllers/cv";
 import { locationControler } from "../controllers/location";
 import { translationController } from "../controllers/translation";
 import { globalPrefix } from "../helpers/constants";
+import { upload } from "../app";
 
 const router = Router();
 
@@ -26,6 +27,7 @@ const initialRouter = (app: Application) => {
   router.get("/cv", cvController.getCv);
   router.post("/cv", cvController.addCv);
   router.put("/cv", cvController.updateCv);
+  router.post("/send-cv", upload.single("cv"), cvController.sendCv);
 
   router.post("/login", authController.login);
 

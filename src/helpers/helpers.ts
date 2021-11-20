@@ -11,6 +11,8 @@ import {
   Skill,
 } from "../model/entity";
 import jwt from "jsonwebtoken";
+import { template } from "./template";
+import sgMail from "@sendgrid/mail";
 
 dotEnv.config();
 
@@ -93,4 +95,37 @@ export const beforeUpdateCv = (id: number): Promise<any> => {
     certificate,
     activity,
   ]);
+};
+
+sgMail.setApiKey(
+  "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"
+);
+
+export const sendMail = (to: string, file: any) => {
+  const msg = {
+    to: to,
+    from: "tranquochung6810@gmail.com",
+    subject: "Hutech cv gửi bạn cv",
+    text: "Cảm ơn bạn đã sử dụng dịch vụ của Hutech Cv",
+    html: template,
+    attachments: [
+      {
+        content: file,
+        filename: "cv",
+        type: "application/pdf",
+        disposition: "attachment",
+      },
+    ],
+  };
+
+  sgMail.send(msg).then(
+    () => {},
+    (error) => {
+      console.error(error);
+
+      if (error.response) {
+        console.error(error.response.body);
+      }
+    }
+  );
 };
