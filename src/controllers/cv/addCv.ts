@@ -43,6 +43,9 @@ export const addCv = async (
         summary: data.summary,
         template_id: data.template_id,
         author_id: userId,
+        gender: data.gender,
+        married: data.married,
+        avatar: data.avatar,
       })
       .returning("*")
       .execute();
