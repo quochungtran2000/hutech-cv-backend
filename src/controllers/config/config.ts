@@ -19,7 +19,8 @@ export const config = async (
       .setParameters({ type })
       .getMany();
     return res.status(200).json(data);
-  } catch (error) {
-    return res.status(400).json();
+  } catch (error: any) {
+    console.log(error);
+    return res.status(400).json({ status: 400, message: error.message });
   }
 };

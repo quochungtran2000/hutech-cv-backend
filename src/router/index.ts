@@ -1,5 +1,6 @@
 import { Application, Router } from "express";
 import { ConfigController } from "../controllers/config";
+import { cvController } from "../controllers/cv";
 import { locationControler } from "../controllers/location";
 import { translationController } from "../controllers/translation";
 import { globalPrefix } from "../helpers/constants";
@@ -19,6 +20,11 @@ const initialRouter = (app: Application) => {
   router.get("/translation", translationController.translation);
   router.post("/translation", translationController.addTranslation);
   router.put("/translation", translationController.updateTranslation);
+
+  router.get("/my-cv");
+  router.get("/cv", cvController.getCv);
+  router.post("/cv", cvController.addCv);
+  router.put("/cv");
 
   return app.use(`/${globalPrefix}`, router);
 };

@@ -16,13 +16,10 @@ export class Skill {
   name!: string;
 
   @Column()
-  level!: string;
+  level!: number;
 
   @Column()
   cv_id!: number;
-
-  @Column()
-  configuration_id!: number;
 
   @ManyToOne(() => Cv, (cv) => cv.skills)
   @JoinColumn({ name: "cv_id", referencedColumnName: "id" })
