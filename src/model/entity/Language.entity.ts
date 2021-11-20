@@ -25,8 +25,8 @@ export class Language extends BaseEntity {
   @Column({ nullable: false })
   cv_id!: number;
 
-  @Column({ nullable: false })
-  configuration_id!: number;
+  // @Column({ nullable: false })
+  // configuration_id!: number;
 
   @ManyToOne(() => Cv, (cv) => cv.languages)
   @JoinColumn({ name: "cv_id", referencedColumnName: "id" })

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
+import { DbErrorCode } from "../../helpers/helpers";
 import { Translation } from "../../model/entity";
 import { addTranslationValidation } from "../../validation";
 
@@ -29,7 +30,10 @@ export const addTranslation = async (
       .execute();
 
     return res.status(201).json({ status: 201, message: "create success" });
-  } catch (error) {
-    return res.status(400).json();
+  } catch (error: any) {
+    console.log(error);
+    if (error.code == DbErrorCode.DUPLICATE)
+      return res.status(400).json({ status: 400, message: "duplicate key" });
+    res.status(400).json({ status: 400, message: error.message });
   }
 };

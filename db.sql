@@ -19,8 +19,7 @@ create table skill (
 	id integer default nextval('skill_id_req'::regClass) not null,
 	name character varying not null,
 	level character varying not null,
-	cv_id integer not null,
-	configuration_id integer not null
+	cv_id integer not null
 );
 
 alter table skill add constraint skill_pkey primary key (id);
@@ -49,7 +48,6 @@ create table education (
   school character varying not null,
   degree_vi character varying,
   degree_en character varying,
-  configuration_id integer not null,
   from_date timestamp not null,
   to_date timestamp not null,
   achievement character varying not null
@@ -64,8 +62,7 @@ create table public.language (
     name character varying not null,
     level_vi character varying,
     level_en character varying,
-    cv_id integer not null,
-    configuration_id integer not null
+    cv_id integer not null
 );
 
 alter table public.language add constraint language_pkey primary key (id);
@@ -111,7 +108,6 @@ create table public.configuration (
 
 alter table public.configuration add constraint configuration_pkey primary key (id);
 
-
 create sequence cv_id_seq;
 
 create table cv (
@@ -144,3 +140,17 @@ create table public.translation (
 
 alter table public.translation add constraint translation_pkey primary key (key);
 
+
+
+
+alter table cv add constraint cv_fkey_city foreign key (city_id) references city (id);
+alter table cv add constraint cv_fkey_district foreign key (district_id) references district (id);
+alter table cv add constraint cv_fkey_configuration foreign key (configuration_id) references public.configuration (id);
+
+
+alter table exprerience  add constraint experience_fkey_cv foreign key (cv_id) references cv (id);
+alter table education add constraint education_fkey_cv foreign key (cv_id) references cv (id);
+alter table certificate add constraint certificate_fkey_cv foreign key (cv_id) references cv (id);
+alter table activity add constraint activity_fkey_cv foreign key (cv_id) references cv (id);
+alter table skill add constraint skill_fkey_cv foreign key (cv_id) references cv (id);
+alter table public.language add constraint language_fkey_cv foreign key (cv_id) references cv (id);

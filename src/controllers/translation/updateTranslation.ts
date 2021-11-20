@@ -40,8 +40,8 @@ export const updateTranslation = async (
       .execute();
 
     return res.status(201).json({ status: 200, message: "update success" });
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
-    return res.status(400).json();
+    return res.status(400).json({ status: 400, message: error.message });
   }
 };

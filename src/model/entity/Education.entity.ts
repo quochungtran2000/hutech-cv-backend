@@ -28,8 +28,8 @@ export class Education extends BaseEntity {
   @Column({ nullable: true })
   degree_en!: string;
 
-  @Column({ nullable: false })
-  configuration_id!: number;
+  // @Column({ nullable: false })
+  // configuration_id!: number;
 
   @Column({ type: Date, nullable: false })
   from_date?: Date;
