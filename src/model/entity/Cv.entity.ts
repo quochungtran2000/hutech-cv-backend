@@ -48,6 +48,9 @@ export class Cv {
   @Column({ name: "is_married", default: false })
   married!: boolean;
 
+  @Column()
+  avatar!: string;
+  
   @Column({ nullable: true })
   date_of_birth!: Date;
 

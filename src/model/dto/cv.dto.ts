@@ -10,6 +10,7 @@ export interface CvDto {
   district_id: number;
   gender: string;
   married: boolean;
+  avatar: string;
   address: string;
   summary: string;
   template_id: number;

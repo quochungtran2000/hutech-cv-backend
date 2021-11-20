@@ -34,28 +34,30 @@ export const updateCv = async (
       .getOne();
 
     let ref_id: number;
+    const params: QueryDeepPartialEntity<Cv> = {
+      fullname: data.fullname,
+      job_title: data.job_title,
+      current_level: data.current_level,
+      experience_years: data.experience_years,
+      email: data.email,
+      phone: data.phone,
+      date_of_birth: data.date_of_birth,
+      city_id: data.city_id,
+      district_id: data.district_id,
+      address: data.address,
+      summary: data.summary,
+      template_id: data.template_id,
+      author_id: userId,
+      married: data.married,
+      gender: data.gender,
+      avatar: data.avatar,
+    };
 
     if (!cv) {
       const result = await createQueryBuilder()
         .insert()
         .into(Cv)
-        .values({
-          fullname: data.fullname,
-          job_title: data.job_title,
-          current_level: data.current_level,
-          experience_years: data.experience_years,
-          email: data.email,
-          phone: data.phone,
-          date_of_birth: data.date_of_birth,
-          city_id: data.city_id,
-          district_id: data.district_id,
-          address: data.address,
-          summary: data.summary,
-          template_id: data.template_id,
-          author_id: userId,
-          married: data.married,
-          gender: data.gender
-        })
+        .values(params)
         .returning("*")
         .execute();
 
@@ -68,23 +70,7 @@ export const updateCv = async (
       await getRepository(Cv)
         .createQueryBuilder()
         .update(Cv)
-        .set({
-          fullname: data.fullname,
-          job_title: data.job_title,
-          current_level: data.current_level,
-          experience_years: data.experience_years,
-          email: data.email,
-          phone: data.phone,
-          date_of_birth: data.date_of_birth,
-          city_id: data.city_id,
-          district_id: data.district_id,
-          address: data.address,
-          summary: data.summary,
-          template_id: data.template_id,
-          author_id: userId,
-          married: data.married,
-          gender: data.gender
-        })
+        .set(params)
         .where("id = :cvId")
         .setParameters({ cvId: ref_id })
         .execute();
@@ -206,7 +192,7 @@ export const updateCv = async (
 
     await Promise.all(todoList);
 
-    return res.status(200).json({data});
+    return res.status(200).json({ data });
   } catch (error: any) {
     console.log(error);
     return res.status(400).json({ status: 400, message: error.message });
