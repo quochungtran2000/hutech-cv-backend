@@ -114,7 +114,7 @@ create table cv (
   id integer default nextval('cv_id_seq'::regClass) not null,
   fullname character varying not null,
   job_title character varying not null,
-  current_level character varying not null,
+  current_level integer not null,
   experience_years integer not null,
   email character varying not null,
   phone character varying not null,
@@ -123,8 +123,7 @@ create table cv (
   district_id  integer not null,
   address character varying not null,
   description character varying,
-  template_id  integer not null,
-  configuration_id integer not null
+  template_id  integer not null
 );
 
 alter table cv add column create_date timestamp default now();
@@ -145,7 +144,7 @@ alter table public.translation add constraint translation_pkey primary key (key)
 
 alter table cv add constraint cv_fkey_city foreign key (city_id) references city (id);
 alter table cv add constraint cv_fkey_district foreign key (district_id) references district (id);
-alter table cv add constraint cv_fkey_configuration foreign key (configuration_id) references public.configuration (id);
+alter table cv add constraint cv_fkey_configuration foreign key (current_level) references public.configuration (id);
 
 
 alter table exprerience  add constraint experience_fkey_cv foreign key (cv_id) references cv (id);

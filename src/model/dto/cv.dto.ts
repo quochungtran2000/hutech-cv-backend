@@ -1,7 +1,7 @@
 export interface CvDto {
   fullname: string;
   job_title: string;
-  current_level: string;
+  current_level: number;
   experience_years: number;
   email: string;
   phone: string;
@@ -9,9 +9,8 @@ export interface CvDto {
   city_id: number;
   district_id: number;
   address: string;
-  description: string;
+  summary: string;
   template_id: number;
-  configuration_id: number;
   author_id: string;
   activities: ActivityDto[];
   experiences: ExperienceDto[];
