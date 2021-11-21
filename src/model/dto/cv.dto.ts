@@ -57,6 +57,7 @@ export interface SkillDto {
 export interface LanguageDto {
   name: string;
   configuration_id: number;
+  level: number;
 }
 
 export interface CertificateDto {

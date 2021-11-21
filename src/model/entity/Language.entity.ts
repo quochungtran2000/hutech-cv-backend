@@ -19,6 +19,9 @@ export class Language extends BaseEntity {
   @Column({ nullable: true })
   level_vi!: string;
 
+  @Column({ nullable: false })
+  level!: number;
+
   @Column({ nullable: true })
   level_en!: string;
 

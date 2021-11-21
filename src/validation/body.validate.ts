@@ -31,6 +31,7 @@ export const cvSkill = Joi.object({
 
 export const cvLanguage = Joi.object({
   name: Joi.string().required(),
+  level: Joi.number().required(),
   configuration_id: Joi.number().required(),
 });
 

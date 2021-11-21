@@ -113,6 +113,7 @@ export const updateCv = async (
         values.push({
           cv_id: ref_id,
           name: elm.name,
+          level: elm.level,
           level_vi: config.value_vi,
           level_en: config.value_en,
         });

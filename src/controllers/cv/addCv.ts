@@ -87,6 +87,7 @@ export const addCv = async (
         values.push({
           cv_id: insertCv.id,
           name: elm.name,
+          level: elm.level,
           level_vi: config.value_vi,
           level_en: config.value_en,
         });
