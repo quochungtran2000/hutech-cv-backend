@@ -11,6 +11,7 @@ import {
   Experience,
   Language,
   Skill,
+  Suggest,
 } from "../model/entity";
 import { Translation } from "../model/entity/Translation.entity";
 import {
@@ -41,6 +42,7 @@ const dbConfig: ConnectionOptions = {
     Cv,
     Translation,
     Account,
+    Suggest
   ],
 };
 

@@ -11,3 +11,4 @@ export * from "./Configuration.entity";
 export * from "./Cv.entity";
 export * from "./Translation.entity";
 export * from "./Account.entity";
+export * from "./Suggest.entity";

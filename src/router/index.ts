@@ -6,6 +6,7 @@ import { locationControler } from "../controllers/location";
 import { translationController } from "../controllers/translation";
 import { globalPrefix } from "../helpers/constants";
 import { upload } from "../app";
+import { suggestController } from "../controllers/suggest";
 
 const router = Router();
 
@@ -28,6 +29,11 @@ const initialRouter = (app: Application) => {
   router.post("/cv", cvController.addCv);
   router.put("/cv", cvController.updateCv);
   router.post("/send-cv", upload.single("cv"), cvController.sendCv);
+
+  router.get("/suggest", suggestController.getSuggest);
+  router.post("/suggest", suggestController.addSuggest);
+  router.put('/suggest', suggestController.updateSuggest);
+  router.delete('/suggest/:category', suggestController.deleteSuggest)
 
   router.post("/login", authController.login);
 
