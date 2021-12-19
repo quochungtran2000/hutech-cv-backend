@@ -16,7 +16,7 @@ export const sendCv = async (req: Request, res: Response) => {
 
     if (!file || !email) return res.sendStatus(400);
 
-    const base64File = new Buffer(file.buffer).toString("base64");
+    const base64File =Buffer.from(file.buffer).toString("base64");
     await sendMail(email, base64File);
     // fs.writeFile(savePath, file.buffer, function (err: any) {
     //   if (err) {

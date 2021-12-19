@@ -110,7 +110,7 @@ export const sendMail = (to: string, file: any) => {
     attachments: [
       {
         content: file,
-        filename: "cv",
+        filename: "cv.pdf",
         type: "application/pdf",
         disposition: "attachment",
       },
