@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
 import { Cv } from ".";
+import { CvProfessional } from "./CvProfessional";
 
 @Entity({ name: "account" })
 export class Account {
@@ -18,4 +19,8 @@ export class Account {
   @OneToOne(() => Cv, (cv) => cv.author)
   @JoinColumn({ name: "id", referencedColumnName: "author_id" })
   cv!: Cv;
+
+  @OneToMany(() => CvProfessional, (cvProfessional) => cvProfessional.author)
+  @JoinColumn({ name: "id", referencedColumnName: "author_id" })
+  cvProfessional!: CvProfessional[];
 }

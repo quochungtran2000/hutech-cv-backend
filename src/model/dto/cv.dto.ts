@@ -73,3 +73,12 @@ export interface LoginDto {
   email: string;
   name: string;
 }
+
+
+export interface CvProfessionalDto{
+  author_id: string;
+  codestyle: string;
+  image: string;
+  create_date: Date;
+  update_date: Date;
+}

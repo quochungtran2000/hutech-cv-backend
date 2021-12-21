@@ -13,6 +13,7 @@ import {
   Skill,
   Suggest,
 } from "../model/entity";
+import { CvProfessional } from "../model/entity/CvProfessional";
 import { Translation } from "../model/entity/Translation.entity";
 import {
   DB_PG_HOST,
@@ -42,7 +43,8 @@ const dbConfig: ConnectionOptions = {
     Cv,
     Translation,
     Account,
-    Suggest
+    Suggest,
+    CvProfessional
   ],
 };
 

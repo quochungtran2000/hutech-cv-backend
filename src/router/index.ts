@@ -7,6 +7,7 @@ import { translationController } from "../controllers/translation";
 import { globalPrefix } from "../helpers/constants";
 import { upload } from "../app";
 import { suggestController } from "../controllers/suggest";
+import { CvProController } from "../controllers/cvpro";
 
 const router = Router();
 
@@ -23,6 +24,12 @@ const initialRouter = (app: Application) => {
   router.get("/translation", translationController.translation);
   router.post("/translation", translationController.addTranslation);
   router.put("/translation", translationController.updateTranslation);
+
+  //cv pro
+  router.get("/mypro-cv", CvProController.myProCv);
+  router.post("/cv/pro", CvProController.saveCvPro);
+  router.put("/cv/pro/:id", CvProController.updateCvPro);
+  router.delete("/cv/pro/:id", CvProController.deleteCvPro);
 
   router.get("/my-cv", cvController.myCv);
   router.get("/cv", cvController.getCv);

@@ -173,3 +173,14 @@ create table account (
 
 alter table account add constraint account_pkey primary key (id);
 
+create table cvprofessional (
+    id integer default nextval('cvpro_id_seq'::regClass) not null,
+	  author_id character varying not null,
+    codestyle character varying not null,
+    image character varying,
+    create_date timestamp default now(),
+    update_date timestamp default now()
+)
+
+alter table cvprofessional add constraint cvpro_pkey primary key (id);
+alter table cvprofessional add constraint cvpro_fkey_account foreign key (author_id) references account (id);

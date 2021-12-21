@@ -81,3 +81,8 @@ export const loginValidation = Joi.object({
   email: Joi.string().email(),
   name: Joi.string(),
 });
+
+
+export const cvProValidation = Joi.object({
+    image: Joi.string(),
+})
