@@ -29,7 +29,7 @@ const initialRouter = (app: Application) => {
   router.get("/mypro-cv", CvProController.myProCv);
   router.post("/cv/pro", CvProController.saveCvPro);
   router.put("/cv/pro/:id", CvProController.updateCvPro);
-  router.delete("/cv/pro/:id", CvProController.deleteCvPro);
+  router.delete("/cv/pro", CvProController.deleteCvPro);
 
   router.get("/my-cv", cvController.myCv);
   router.get("/cv", cvController.getCv);

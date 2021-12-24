@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Account } from ".";
 
 @Entity({name:"cvprofessional"})
@@ -20,6 +20,9 @@ export class CvProfessional{
 
     @Column({})
     update_date!: Date;
+
+    @DeleteDateColumn()
+    deleteat?: Date;
 
     @ManyToOne(() => Account, (account) => account.cvProfessional)
     @JoinColumn({ name: "author_id", referencedColumnName: "id" })

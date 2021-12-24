@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { createQueryBuilder, getRepository } from "typeorm";
 import { CvProfessional } from "../../model/entity/CvProfessional";
 
 export const deleteCvPro = async(req: Request, res: Response) => {
@@ -9,13 +9,20 @@ export const deleteCvPro = async(req: Request, res: Response) => {
         const userId = (req as any)?.user?.userId;
         if (!userId) return res.status(401).json({ message: "Unauthorized!" });
 
-        const id = req.params.id;
+        // const id = req.params.id;
         
-        await getRepository(CvProfessional)
-            .createQueryBuilder()
-            .delete()
-            .where("id =:id",{id: id})
-            .andWhere("author_id =:userId",{userId: userId})
+        // await getRepository(CvProfessional)
+        //     .createQueryBuilder()
+        //     .delete()
+        //     .where("id =:id",{id: id})
+        //     .andWhere("author_id =:userId",{userId: userId})
+        //     .execute();
+
+        const { idList } = req.body;
+        const deleteDriver = await createQueryBuilder()
+            .softDelete()
+            .from(CvProfessional)
+            .where("id IN(:...ids)", { ids: idList })
             .execute();
         res.status(200).json({
             status: 200,

@@ -23,7 +23,7 @@ export const saveCvPro = async(
             .insert()
             .into(CvProfessional)
             .values({ 
-                author_id: "1811061170",
+                author_id: userId,
                 codestyle: JSON.stringify(data.codestyle),
                 image: data.image,
                 create_date: new Date(),

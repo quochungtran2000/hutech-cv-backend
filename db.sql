@@ -179,7 +179,8 @@ create table cvprofessional (
     codestyle character varying not null,
     image character varying,
     create_date timestamp default now(),
-    update_date timestamp default now()
+    update_date timestamp default now(),
+    deleteat timestamp
 )
 
 alter table cvprofessional add constraint cvpro_pkey primary key (id);
