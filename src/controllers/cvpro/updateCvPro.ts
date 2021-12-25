@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { createQueryBuilder } from "typeorm";
 import { CvProfessionalDto } from "../../model/dto/cv.dto";
 import { CvProfessional } from "../../model/entity/CvProfessional";
-import { cvProValidation } from "../../validation";
+// import { cvProValidation } from "../../validation";
 
 export const updateCvPro = async (
     req: Request<any, any, CvProfessionalDto, any>,
@@ -14,8 +14,8 @@ export const updateCvPro = async (
         const id = req.params.id;
         const data = req.body;
 
-        const { error } = cvProValidation.validate(data);
-        if (error) return res.status(400).json({ message: error.message });
+        // const { error } = cvProValidation.validate(data);
+        // if (error) return res.status(400).json({ message: error.message });
 
         
         const updateCv = await createQueryBuilder()

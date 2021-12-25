@@ -9,15 +9,6 @@ export const deleteCvPro = async(req: Request, res: Response) => {
         const userId = (req as any)?.user?.userId;
         if (!userId) return res.status(401).json({ message: "Unauthorized!" });
 
-        // const id = req.params.id;
-        
-        // await getRepository(CvProfessional)
-        //     .createQueryBuilder()
-        //     .delete()
-        //     .where("id =:id",{id: id})
-        //     .andWhere("author_id =:userId",{userId: userId})
-        //     .execute();
-
         const { idList } = req.body;
         const deleteDriver = await createQueryBuilder()
             .softDelete()

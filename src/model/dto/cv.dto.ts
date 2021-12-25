@@ -74,11 +74,76 @@ export interface LoginDto {
   name: string;
 }
 
-
-export interface CvProfessionalDto{
+export interface CvProfessionalDto {
   author_id: string;
   codestyle: string;
   image: string;
   create_date: Date;
   update_date: Date;
+}
+
+export class CVPRODTO {
+  template?: string;
+  image_url?: string;
+  pdf_url?: string;
+  type?: string;
+  urlQR?: string;
+  level?: string;
+  major?: string;
+  name?: string;
+  author_id?: string;
+
+  public static fromDTO(dto: Partial<CVPRODTO>) {
+    const res = new CVPRODTO();
+    res.image_url = dto.image_url;
+    res.template = dto.template;
+    res.pdf_url = dto.pdf_url;
+    res.type = dto.type;
+    res.urlQR = dto.urlQR;
+    res.level = dto.level;
+    res.name = dto.name;
+    res.major = dto.major;
+    res.author_id = dto.author_id;
+    return res;
+  }
+}
+
+export class CvResponse {
+  id?: string;
+  template?: string;
+  image_url?: string;
+  pdf_url?: string;
+  slug?: string;
+  urlQR?: string;
+  level?: string;
+  major?: string;
+  name?: string;
+  create_at?: Date;
+  update_at?: Date;
+
+  public static fromEntityToCV(entity: Partial<CvResponse>) {
+    const res = new CvResponse();
+    res.id = entity.id;
+    res.urlQR = entity.urlQR;
+    res.level = entity.level;
+    res.major = entity.major;
+    res.name = entity.name;
+    res.template = entity.template;
+    res.image_url = entity.image_url;
+    res.pdf_url = entity.pdf_url;
+    res.slug = entity.slug;
+    res.create_at = entity.create_at;
+    res.update_at = entity.update_at;
+    return res;
+  }
+
+  public static fromEntityToTemplate(entity: Partial<CvResponse>) {
+    const res = new CvResponse();
+    res.id = entity.id;
+    res.template = entity.template;
+    res.image_url = entity.image_url;
+    res.create_at = entity.create_at;
+    res.update_at = entity.update_at;
+    return res;
+  }
 }
