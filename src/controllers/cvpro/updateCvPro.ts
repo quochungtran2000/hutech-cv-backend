@@ -20,18 +20,18 @@ export const updateCvPro = async (
         if (errors1) return res.status(400).json({ message: errors1.message });
 
         data.author_id = userId;
-        const findUser = await getRepository(Account)
-          .createQueryBuilder()
-          .where('id =:userId')
-          .setParameters({userId})
-          .getOne();
+        // const findUser = await getRepository(Account)
+        //   .createQueryBuilder()
+        //   .where('id =:userId')
+        //   .setParameters({userId})
+        //   .getOne();
     
-          console.log(findUser);
+        //   console.log(findUser);
         
-        if(findUser){
-          data.fullname = findUser.name;
-          data.email = findUser.email;
-        }
+        // if(findUser){
+        //   data.fullname = findUser.name;
+        //   data.email = findUser.email;
+        // }
 
         await createQueryBuilder()
             .update(CvProfessional)

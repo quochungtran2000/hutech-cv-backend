@@ -91,5 +91,8 @@ export const CvProTypeValidation = Joi.object({
   major: Joi.string(),
   name: Joi.string(),
   template: Joi.string(),
+  fullname: Joi.string(),
+  email: Joi.string(),
+  phone:Joi.string(),
   // author_id: Joi.number()
 });
