@@ -83,7 +83,7 @@ export const loginValidation = Joi.object({
 });
 
 export const CvProTypeValidation = Joi.object({
-  type: Joi.string().required().valid("template", "cv"),
+  type: Joi.string().valid("template", "cv"),
   pdf_url : Joi.string(),
   image_url: Joi.string(),
   urlqr: Joi.string(),
