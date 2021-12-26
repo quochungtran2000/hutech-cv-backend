@@ -26,8 +26,8 @@ const initialRouter = (app: Application) => {
   router.put("/translation", translationController.updateTranslation);
 
   //cv pro
-  router.get('/cv/pro/list',CvProController.listCv);
-  router.get('/cv/pro/detail/:id', CvProController.detailCv);
+  router.get('/cv/pro',CvProController.listCv);
+  router.get('/cv/pro/:id', CvProController.detailCv);
   router.get("/mypro-cv", CvProController.myProCv);
   router.post("/cv/pro", CvProController.saveCvPro);
   router.put("/cv/pro/:id", CvProController.updateCvPro);
