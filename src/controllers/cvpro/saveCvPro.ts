@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { createQueryBuilder } from "typeorm";
+import { createQueryBuilder, getRepository } from "typeorm";
 import { DbErrorCode } from "../../helpers/helpers";
 import { CVPRODTO, CvProfessionalDto } from "../../model/dto/cv.dto";
+import { Account } from "../../model/entity/Account.entity";
 import { CvProfessional } from "../../model/entity/CvProfessional";
 import { CvProTypeValidation } from "../../validation";
 
@@ -18,6 +19,18 @@ export const saveCvPro = async (
 
     const data = req.body;
     data.author_id = userId;
+    const findUser = await getRepository(Account)
+      .createQueryBuilder()
+      .where('id =:userId')
+      .setParameters({userId})
+      .getOne();
+
+      console.log(findUser);
+    
+    if(findUser){
+      data.fullname = findUser.name;
+      data.email = findUser.email;
+    }
 
     await createQueryBuilder()
       .insert()
