@@ -26,7 +26,7 @@ export const saveCvPro = async (
     //   .getOne();
 
     //   console.log(findUser);
-    
+
     // if(findUser){
     //   data.fullname = findUser.name;
     //   data.email = findUser.email;
@@ -43,6 +43,7 @@ export const saveCvPro = async (
       message: `create ${data.type === "template" ? "template" : "cv"} success`,
     });
   } catch (error: any) {
+    console.log(JSON.stringify(error));
     return res.status(400).json({ status: 400, message: error.message });
   }
 };
