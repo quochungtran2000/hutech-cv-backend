@@ -87,10 +87,13 @@ export class CVPRODTO {
   image_url?: string;
   pdf_url?: string;
   type?: string;
-  urlQR?: string;
+  urlqr?: string;
   level?: string;
   major?: string;
   name?: string;
+  fullname?: string;
+  email?: string;
+  phone?: string;
   author_id?: string;
 
   public static fromDTO(dto: Partial<CVPRODTO>) {
@@ -99,11 +102,14 @@ export class CVPRODTO {
     res.template = dto.template;
     res.pdf_url = dto.pdf_url;
     res.type = dto.type;
-    res.urlQR = dto.urlQR;
+    res.urlqr = dto.urlqr;
     res.level = dto.level;
     res.name = dto.name;
     res.major = dto.major;
     res.author_id = dto.author_id;
+    res.fullname = dto.fullname;
+    res.email = dto.email;
+    res.phone = dto.phone;
     return res;
   }
 }
@@ -114,17 +120,21 @@ export class CvResponse {
   image_url?: string;
   pdf_url?: string;
   slug?: string;
-  urlQR?: string;
+  urlqr?: string;
   level?: string;
   major?: string;
   name?: string;
+  fullname?: string;
+  email?: string;
+  phone?: string;
+  view?: number;
   create_at?: Date;
   update_at?: Date;
 
   public static fromEntityToCV(entity: Partial<CvResponse>) {
     const res = new CvResponse();
     res.id = entity.id;
-    res.urlQR = entity.urlQR;
+    res.urlqr = entity.urlqr;
     res.level = entity.level;
     res.major = entity.major;
     res.name = entity.name;
@@ -132,6 +142,9 @@ export class CvResponse {
     res.image_url = entity.image_url;
     res.pdf_url = entity.pdf_url;
     res.slug = entity.slug;
+    res.fullname = entity.fullname;
+    res.email = entity.email;
+    res.phone =  entity.phone;
     res.create_at = entity.create_at;
     res.update_at = entity.update_at;
     return res;

@@ -86,7 +86,7 @@ export const CvProTypeValidation = Joi.object({
   type: Joi.string().required().valid("template", "cv"),
   pdf_url : Joi.string(),
   image_url: Joi.string(),
-  urlQR: Joi.string(),
+  urlqr: Joi.string(),
   level: Joi.string().valid("intern", "fresher", "junior", "senior"),
   major: Joi.string(),
   name: Joi.string(),

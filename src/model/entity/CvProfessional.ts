@@ -17,6 +17,12 @@ export class CvProfessional {
   author_id!: string;
 
   @Column({})
+  name!: string;
+
+  @Column({})
+  major!: string;
+
+  @Column({})
   template!: string;
 
   @Column({})
@@ -32,7 +38,25 @@ export class CvProfessional {
   type!: string;
 
   @Column({})
+  urlqr!: string;
+
+  @Column({})
+  level!: string;
+
+  @Column({})
   public!: boolean;
+
+  @Column({})
+  fullname!:string;
+
+  @Column({})
+  email!:string;
+
+  @Column({})
+  phone!:string;
+
+  @Column({})
+  view!:number;
 
   @Column({})
   create_date!: Date;
