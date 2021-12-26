@@ -84,15 +84,15 @@ export const loginValidation = Joi.object({
 
 export const CvProTypeValidation = Joi.object({
   type: Joi.string().valid("template", "cv"),
-  pdf_url : Joi.string(),
+  pdf_url: Joi.string(),
   image_url: Joi.string(),
   urlqr: Joi.string(),
-  level: Joi.string().valid("intern", "fresher", "junior", "senior"),
+  level: Joi.string(),
   major: Joi.string(),
   name: Joi.string(),
   template: Joi.string(),
   fullname: Joi.string(),
   email: Joi.string(),
-  phone:Joi.string(),
+  phone: Joi.string(),
   // author_id: Joi.number()
 });
