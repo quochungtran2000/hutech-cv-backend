@@ -1,6 +1,6 @@
 import { getEnv } from "./helpers";
 
-export const PORT = getEnv("PORT") || 3000 ;
+export const PORT = getEnv("PORT") || 1708 ;
 export const DB_PG_HOST = getEnv("DB_PG_HOST");
 export const DB_PG_PORT = getEnv("DB_PG_PORT");
 export const DB_PG_USERNAME = getEnv("DB_PG_USERNAME");

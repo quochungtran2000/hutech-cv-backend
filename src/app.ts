@@ -11,7 +11,6 @@ import multer from "multer";
 // import auth from "./middleware/auth.middleware";
 import morgan from "morgan";
 import { auth } from "./middlewares/auth.middleware";
-import { logger } from "./middlewares/log.middleware";
 
 const app = Express();
 
@@ -20,7 +19,6 @@ app.use(cors());
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(logger);
 
 export const upload = multer({ storage: undefined });
 

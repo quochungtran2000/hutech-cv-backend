@@ -11,6 +11,9 @@ export const saveCvPro = async (
   res: Response
 ) => {
   try {
+
+    console.log({payload:JSON.stringify(req.body)})
+
     const userId = (req as any)?.user?.userId || "1811061170";
     if (!userId) return res.status(401).json({ message: "Unauthorized!" });
 
